@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Matriz DOFA Interactiva - Pet Paradise</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        main {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            background: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 2rem 2rem 4.5rem;
+            /* espacio abajo para botón */
+            flex-grow: 1;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+        }
+        
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+        }
+        
+        .accordion-btn {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 0.5rem;
+            background-color: #38a169;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.7);
+            transition: background-color 0.3s ease;
+        }
+        
+        .accordion-btn:hover,
+        .accordion-btn:focus {
+            background-color: #2f855a;
+        }
+        
+        .accordion-btn::after {
+            content: "▼";
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-btn[aria-expanded="true"]::after {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 0.5rem;
+            color: #276749;
+        }
+        
+        .accordion-content.open {
+            padding: 1.5rem 0.5rem 2rem;
+            max-height: 500px;
+        }
+        
+        ul {
+            padding-left: 1.2rem;
+        }
+        
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .volver-inicio {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #38a169;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.7);
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+        
+        .volver-inicio:hover,
+        .volver-inicio:focus {
+            background-color: #2f855a;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Matriz DOFA - Análisis Estratégico de Pet Paradise</h1>
+
+
+
+        <section class="accordion-item">
+            <button type="button" class="accordion-btn" aria-expanded="false" aria-controls="debilidades" id="btn-debilidades">
+      Debilidades (D)
+    </button>
+            <div id="debilidades" class="accordion-content" role="region" aria-labelledby="btn-debilidades">
+                <ul>
+                    <li>Recursos limitados para expansión inicial.</li>
+                    <li>Dependencia de proveedores externos para productos.</li>
+                    <li>Baja visibilidad frente a grandes competidores consolidados.</li>
+                    <li>Necesidad de mejorar procesos logísticos y entrega.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="accordion-item">
+            <button type="button" class="accordion-btn" aria-expanded="false" aria-controls="oportunidades" id="btn-oportunidades">
+      Oportunidades (O)
+    </button>
+            <div id="oportunidades" class="accordion-content" role="region" aria-labelledby="btn-oportunidades">
+                <ul>
+                    <li>Crecimiento del mercado de mascotas y cuidado animal.</li>
+                    <li>Aprovechar redes sociales para marketing y fidelización.</li>
+                    <li>Alianzas con veterinarias y protectoras locales.</li>
+                    <li>Incorporación de productos ecológicos y sostenibles.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="accordion-item">
+            <button type="button" class="accordion-btn" aria-expanded="false" aria-controls="fortalezas" id="btn-fortalezas">
+      Fortalezas (F)
+    </button>
+            <div id="fortalezas" class="accordion-content" role="region" aria-labelledby="btn-fortalezas">
+                <ul>
+                    <li>Amplia variedad de productos de alta calidad para mascotas.</li>
+                    <li>Atención personalizada y conocimiento experto en mascotas.</li>
+                    <li>Presencia online con tienda atractiva y fácil de usar.</li>
+                    <li>Equipo comprometido con pasión por las mascotas.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="accordion-item">
+            <button type="button" class="accordion-btn" aria-expanded="false" aria-controls="amenazas" id="btn-amenazas">
+      Amenazas (A)
+    </button>
+            <div id="amenazas" class="accordion-content" role="region" aria-labelledby="btn-amenazas">
+                <ul>
+                    <li>Competencia creciente con plataformas más grandes.</li>
+                    <li>Cambios en las preferencias de los consumidores.</li>
+                    <li>Riesgos asociados a fluctuaciones económicas y pandemias.</li>
+                    <li>Regulaciones estrictas sobre productos para animales.</li>
+                </ul>
+            </div>
+        </section>
+
+        <a href="index.html" class="volver-inicio" aria-label="Volver a página principal">← Volver a Inicio</a>
+    </main>
+
+    <script>
+        document.querySelectorAll('.accordion-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const expanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', String(!expanded));
+
+                const content = document.getElementById(button.getAttribute('aria-controls'));
+                if (!expanded) {
+                    content.classList.add('open');
+                } else {
+                    content.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
