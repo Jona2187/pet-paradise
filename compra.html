@@ -1,202 +1,340 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pet Paradise - Compra</title>
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #f5f7fa;
-        color: #333;
-        padding: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-    .compra-container {
-        background: #fff;
-        padding: 2rem 3rem;
-        border-radius: 12px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        max-width: 480px;
-        width: 100%;
-        text-align: center;
-    }
-    h1 {
-        color: #2d3748;
-        margin-bottom: 1rem;
-    }
-    p {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-        color: #4a5568;
-    }
-    form {
-        text-align: left;
-    }
-    label {
-        display: block;
-        font-weight: 600;
-        color: #2c7a7b;
-        margin-bottom: 0.3rem;
-        margin-top: 1rem;
-    }
-    input, select {
-        width: 100%;
-        padding: 0.6rem;
-        border: 2px solid #38a169;
-        border-radius: 6px;
-        font-family: inherit;
-        font-size: 1rem;
-        box-sizing: border-box;
-        transition: border-color 0.3s ease;
-    }
-    input:focus, select:focus {
-        outline: none;
-        border-color: #2f855a;
-    }
-    button[type="submit"] {
-        margin: 1.8rem 0 0;
-        background-color: #38a169;
-        color: white;
-        border: none;
-        padding: 0.8rem 1.6rem;
-        font-size: 1.1rem;
-        font-weight: 700;
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0 5px 12px rgba(56, 161, 105, 0.75);
-        transition: background-color 0.3s ease;
-        width: 100%;
-    }
-    button[type="submit"]:hover,
-    button[type="submit"]:focus {
-        background-color: #2f855a;
-        outline: none;
-    }
-    .hidden {
-        display: none;
-    }
-    a.back-link {
-        display: inline-block;
-        margin-top: 1.2rem;
-        color: #38a169;
-        text-decoration: none;
-        font-weight: 600;
-    }
-    a.back-link:hover {
-        color: #2f855a;
-        text-decoration: underline;
-    }
-</style>
-<script>
-function getProductoParam() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('producto') || 'producto';
-}
-
-function mostrarMensajeProducto() {
-    const producto = getProductoParam();
-    let nombreProducto = '';
-    switch(producto) {
-        case 'comida-perros': nombreProducto = 'Comida Premium para Perros'; break;
-        case 'juguete-gatos': nombreProducto = 'Juguete Interactivo para Gatos'; break;
-        case 'collar-reflectante': nombreProducto = 'Collar Reflectante para Mascotas'; break;
-        default: nombreProducto = 'producto';
-    }
-    document.getElementById('producto-nombre').textContent = nombreProducto;
-}
-
-function cambiarMetodoPago() {
-    const metodo = document.getElementById('metodo-pago').value;
-    const tarjetaSection = document.getElementById('tarjeta-section');
-    const pseSection = document.getElementById('pse-section');
-
-    if(metodo === 'tarjeta') {
-        tarjetaSection.classList.remove('hidden');
-        pseSection.classList.add('hidden');
-    } else if(metodo === 'pse') {
-        tarjetaSection.classList.add('hidden');
-        pseSection.classList.remove('hidden');
-    } else {
-        tarjetaSection.classList.add('hidden');
-        pseSection.classList.add('hidden');
-    }
-}
-
-function validarFormulario(e) {
-    e.preventDefault();
-
-    const metodo = document.getElementById('metodo-pago').value;
-    if (!metodo) {
-        alert('Por favor, selecciona un método de pago.');
-        return;
-    }
-
-    if (metodo === 'tarjeta') {
-        const titular = document.getElementById('titular').value.trim();
-        const numero = document.getElementById('numero').value.trim();
-        const expira = document.getElementById('expira').value.trim();
-        const cvv = document.getElementById('cvv').value.trim();
-
-        if(!titular || !numero || !expira || !cvv) {
-            alert('Por favor, completa todos los campos de la tarjeta.');
-            return;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Finalizar Compra - Vortex Athletics</title>
+    <style>
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        const numeroReg = /^\d{16}$/;
-        if(!numeroReg.test(numero)) {
-            alert('El número de tarjeta debe tener 16 dígitos.');
-            return;
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 24px;
         }
 
-        const expiraReg = /^(0[1-9]|1[0-2])\/\d{2}$/;
-        if(!expiraReg.test(expira)) {
-            alert('La fecha de expiración debe estar en formato MM/AA.');
-            return;
+        /* HEADER */
+        header {
+            background-color: #0a0a0a;
+            border-bottom: 1px solid #222;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        const cvvReg = /^\d{3}$/;
-        if(!cvvReg.test(cvv)) {
-            alert('El CVV debe tener 3 dígitos.');
-            return;
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-    }
-    else if(metodo === 'pse') {
-        const banco = document.getElementById('banco').value;
-        const usuario = document.getElementById('usuario-pse').value.trim();
-        if(!banco) {
-            alert('Por favor, selecciona un banco.');
-            return;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0087b2;
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+            user-select: none;
         }
-        if(!usuario) {
-            alert('Por favor, ingresa tu usuario de PSE.');
-            return;
+
+        .logo img {
+            width: 36px;
+            height: 36px;
         }
-    }
 
-    alert('¡Muchas gracias por tu compra simulada!\nProducto: ' + document.getElementById('producto-nombre').textContent + '\nMétodo de pago: ' + (metodo === 'tarjeta' ? 'Tarjeta de crédito' : 'PSE'));
+        nav#desktop-nav {
+            display: none;
+        }
 
-    // Después de mostrar el mensaje, redirigir en 10 segundos a tienda.html
-    setTimeout(() => {
-        window.location.href = 'tienda.html';
-    }, 1000);
+        /* Hamburger Button */
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: #0087b2;
+            font-size: 28px;
+            display: flex;
+        }
 
-    // Limpiar formulario y ocultar secciones
-    e.target.reset();
-    cambiarMetodoPago();
-}
+        /* NAVIGATION MOBILE PANEL */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 75%;
+            max-width: 300px;
+            height: 100vh;
+            background: #111111;
+            transition: left 0.3s ease;
+            padding: 48px 16px 16px 16px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.8);
+            z-index: 1200;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
 
-window.onload = function() {
-    mostrarMensajeProducto();
-    cambiarMetodoPago();
-    document.getElementById('metodo-pago').addEventListener('change', cambiarMetodoPago);
-    document.getElementById('compra-form').addEventListener('submit', validarFormulario);
-};
-</script>
+        .mobile-nav.open {
+            left: 0;
+        }
+
+        .mobile-nav a {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: #0087b2;
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a:focus {
+            color: #33aaff;
+        }
+
+        /* BACKDROP for mobile nav */
+        .backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            z-index: 1100;
+        }
+
+        .backdrop.show {
+            display: block;
+        }
+
+        /* FORM STYLES */
+        .compra-container {
+            background: #111111;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #4a5568;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #2c7a7b;
+            margin-bottom: 0.3rem;
+            margin-top: 1rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.6rem;
+            border: 2px solid #38a169;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2f855a;
+        }
+
+        button[type="submit"] {
+            margin: 1.8rem 0 0;
+            background-color: #38a169;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.6rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 12px rgba(56, 161, 105, 0.75);
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover,
+        button[type="submit"]:focus {
+            background-color: #2f855a;
+            outline: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        a.back-link {
+            display: inline-block;
+            margin-top: 1.2rem;
+            color: #38a169;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a.back-link:hover {
+            color: #2f855a;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function getProductoParam() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('producto') || 'producto';
+        }
+
+        function mostrarMensajeProducto() {
+            const producto = getProductoParam();
+            let nombreProducto = '';
+            switch(producto) {
+                case 'comida-perros': nombreProducto = 'Comida Premium para Perros'; break;
+                case 'juguete-gatos': nombreProducto = 'Juguete Interactivo para Gatos'; break;
+                case 'collar-reflectante': nombreProducto = 'Collar Reflectante para Mascotas'; break;
+                default: nombreProducto = 'producto';
+            }
+            document.getElementById('producto-nombre').textContent = nombreProducto;
+        }
+
+        function cambiarMetodoPago() {
+            const metodo = document.getElementById('metodo-pago').value;
+            const tarjetaSection = document.getElementById('tarjeta-section');
+            const pseSection = document.getElementById('pse-section');
+
+            if(metodo === 'tarjeta') {
+                tarjetaSection.classList.remove('hidden');
+                pseSection.classList.add('hidden');
+            } else if(metodo === 'pse') {
+                tarjetaSection.classList.add('hidden');
+                pseSection.classList.remove('hidden');
+            } else {
+                tarjetaSection.classList.add('hidden');
+                pseSection.classList.add('hidden');
+            }
+        }
+
+        function validarFormulario(e) {
+            e.preventDefault();
+
+            const metodo = document.getElementById('metodo-pago').value;
+            if (!metodo) {
+                alert('Por favor, selecciona un método de pago.');
+                return;
+            }
+
+            if (metodo === 'tarjeta') {
+                const titular = document.getElementById('titular').value.trim();
+                const numero = document.getElementById('numero').value.trim();
+                const expira = document.getElementById('expira').value.trim();
+                const cvv = document.getElementById('cvv').value.trim();
+
+                if(!titular || !numero || !expira || !cvv) {
+                    alert('Por favor, completa todos los campos de la tarjeta.');
+                    return;
+                }
+
+                const numeroReg = /^\d{16}$/;
+                if(!numeroReg.test(numero)) {
+                    alert('El número de tarjeta debe tener 16 dígitos.');
+                    return;
+                }
+
+                const expiraReg = /^(0[1-9]|1[0-2])\/\d{2}$/;
+                if(!expiraReg.test(expira)) {
+                    alert('La fecha de expiración debe estar en formato MM/AA.');
+                    return;
+                }
+
+                const cvvReg = /^\d{3}$/;
+                if(!cvvReg.test(cvv)) {
+                    alert('El CVV debe tener 3 dígitos.');
+                    return;
+                }
+            }
+            else if(metodo === 'pse') {
+                const banco = document.getElementById('banco').value;
+                const usuario = document.getElementById('usuario-pse').value.trim();
+                if(!banco) {
+                    alert('Por favor, selecciona un banco.');
+                    return;
+                }
+                if(!usuario) {
+                    alert('Por favor, ingresa tu usuario de PSE.');
+                    return;
+                }
+            }
+
+            alert('¡Muchas gracias por tu compra simulada!\nProducto: ' + document.getElementById('producto-nombre').textContent + '\nMétodo de pago: ' + (metodo === 'tarjeta' ? 'Tarjeta de crédito' : 'PSE'));
+
+            // Después de mostrar el mensaje, redirigir en 10 segundos a tienda.html
+            setTimeout(() => {
+                window.location.href = 'tienda.html';
+            }, 1000);
+
+            // Limpiar formulario y ocultar secciones
+            e.target.reset();
+            cambiarMetodoPago();
+        }
+
+        window.onload = function() {
+            mostrarMensajeProducto();
+            cambiarMetodoPago();
+            document.getElementById('metodo-pago').addEventListener('change', cambiarMetodoPago);
+            document.getElementById('compra-form').addEventListener('submit', validarFormulario);
+        };
+    </script>
+</head>
 <body>
+<header>
+  <div class="header-container">
+    <a href="index.html" class="logo" aria-label="Vortex Athletics">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9b228bf7-6e00-4d38-be01-75ec79c004fd.png" alt="Logo Vortex Athletics" />
+      VORTEX ATHLETICS
+    </a>
+    <button aria-label="Abrir menú de navegación" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav id="desktop-nav" aria-label="Menú principal">
+      <a href="index.html">Inicio</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil" tabindex="-1">
+    <a href="index.html" tabindex="0">Inicio</a>
+    <a href="tienda.html" tabindex="0">Tienda</a>
+    <a href="#contact" tabindex="0">Contacto</a>
+  </nav>
+  <div class="backdrop" id="backdrop"></div>
+</header>
+
 <div class="compra-container" role="main" aria-label="Formulario de compra">
     <h1>Compra Online</h1>
     <p>Estás a punto de comprar: <strong id="producto-nombre"></strong>.</p>
@@ -225,7 +363,7 @@ window.onload = function() {
 
         <div id="pse-section" class="hidden" aria-hidden="true">
             <label for="banco">Selecciona tu banco:</label>
-            <select id="banco" name="banco" >
+            <select id="banco" name="banco">
                 <option value="" disabled selected>-- Selecciona un banco --</option>
                 <option value="banco1">Banco 1</option>
                 <option value="banco2">Banco 2</option>
@@ -240,6 +378,54 @@ window.onload = function() {
     </form>
     <a href="tienda.html" class="back-link" aria-label="Regresar a la tienda">← Regresar a la Tienda</a>
 </div>
+
+<script>
+  // Toggle mobile navigation
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  const backdrop = document.getElementById('backdrop');
+
+  function closeMenu() {
+    mobileNav.classList.remove('open');
+    backdrop.classList.remove('show');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function openMenu() {
+    mobileNav.classList.add('open');
+    backdrop.classList.add('show');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    mobileNav.focus();
+  }
+
+  menuToggle.addEventListener('click', () => {
+    if (mobileNav.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  backdrop.addEventListener('click', () => closeMenu());
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+      closeMenu();
+      menuToggle.focus();
+    }
+  });
+
+  // Smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeMenu();
+      const target = document.querySelector(this.getAttribute('href'));
+      if(target){
+        target.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+    });
+  });
+</script>
 </body>
 </html>
-

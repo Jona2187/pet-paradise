@@ -4,354 +4,605 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pet Paradise - Tu rincón de mascotas</title>
+    <title>Vortex Athletics - Impulsa tu fuerza</title>
     <style>
-        /* Reset y base */
+        /* RESET & BASE */
         
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         a {
-            color: #38a169;
             text-decoration: none;
-            transition: color 0.3s ease;
+            color: inherit;
         }
         
-        a:hover {
-            color: #2f855a;
+        button {
+            cursor: pointer;
         }
-        /* Navegacion */
+        
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        /* HEADER */
         
         header {
-            position: fixed;
+            background-color: #0a0a0a;
+            border-bottom: 1px solid #222;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            background: #2d3748;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
         
-        header h1 {
-            color: #f7fafc;
-            font-weight: 700;
-            font-size: 1.8rem;
-            display: inline-block;
-            margin-right: 3rem;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: inline-flex;
-            gap: 1.75rem;
-            vertical-align: middle;
-        }
-        
-        nav ul li a {
-            color: #cbd5e0;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        
-        nav ul li a:hover,
-        nav ul li a:focus {
-            background-color: #38a169;
-            color: #f0fff4;
-            outline: none;
-        }
-        /* Secciones */
-        
-        section {
-            padding: 8rem 2rem 4rem;
-            /* Bajé el contenido: más padding top para bajar "Bienvenidos" */
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            background: #fff;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-            border-radius: 10px;
-        }
-        
-        section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-            border-bottom: 3px solid #38a169;
-            padding-bottom: 0.3rem;
-        }
-        /* Inicio */
-        
-        #inicio p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #4a5568;
-        }
-        
-        #inicio img {
-            max-width: 48%;
-            border-radius: 10px;
-            margin: 0.5rem 1% 1.5rem;
-            box-shadow: 0 4px 15px rgba(56, 161, 105, 0.3);
-        }
-        
-        #inicio ul {
-            list-style-type: square;
-            margin-left: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #2d3748;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-        }
-        
-        #inicio .button {
-            display: inline-block;
-            background-color: #38a169;
-            color: white;
-            font-weight: 700;
-            padding: 0.6rem 1.4rem;
-            font-size: 1.1rem;
-            border-radius: 6px;
-            box-shadow: 0 5px 10px rgba(56, 161, 105, 0.6);
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
-        
-        #inicio .button:hover,
-        #inicio .button:focus {
-            background-color: #2f855a;
-            box-shadow: 0 6px 14px rgba(47, 133, 90, 0.8);
-            outline: none;
-        }
-        /* Tienda */
-        
-        #tienda {
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 16px 24px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 1.8rem;
+            align-items: center;
             justify-content: space-between;
         }
         
-        .producto {
-            flex: 1 1 280px;
-            background: #e6fffa;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(56, 161, 105, 0.25);
-            padding: 1.2rem 1.5rem 2rem;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0087b2;
+            /* blue tone matching the brand */
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+            user-select: none;
+        }
+        
+        .logo img {
+            width: 36px;
+            height: 36px;
+        }
+        
+        nav {
+            display: none;
+        }
+        /* Hamburger Button */
+        
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: #0087b2;
+            font-size: 28px;
+            display: flex;
+        }
+        /* NAVIGATION MOBILE PANEL */
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 75%;
+            max-width: 300px;
+            height: 100vh;
+            background: #111111;
+            transition: left 0.3s ease;
+            padding: 48px 16px 16px 16px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.8);
+            z-index: 1200;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .mobile-nav.open {
+            left: 0;
+        }
+        
+        .mobile-nav a {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: #0087b2;
+        }
+        
+        .mobile-nav a:hover,
+        .mobile-nav a:focus {
+            color: #33aaff;
+        }
+        /* BACKDROP for mobile nav */
+        
+        .backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            z-index: 1100;
+        }
+        
+        .backdrop.show {
+            display: block;
+        }
+        
+        main {
+            flex-grow: 1;
+            max-width: 1440px;
+            margin: 24px auto;
+            padding: 0 24px 60px;
+            width: 100%;
+        }
+        /* HERO SECTION */
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            background-color: #0a0a0a;
+            border-radius: 16px;
+            overflow: hidden;
+            color: white;
+            margin-bottom: 48px;
+            box-shadow: 0 8px 24px rgb(0 0 0 / 0.9);
+        }
+        
+        .hero-content {
+            padding: 24px 32px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-weight: 900;
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: 0.07em;
+        }
+        
+        .btn-primary {
+            background-color: #0066ff;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            width: fit-content;
+            box-shadow: 0 4px 10px rgba(0, 102, 255, 0.6);
+            transition: background-color 0.25s ease;
+        }
+        
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: #0053cc;
+        }
+        
+        .hero-image-wrapper {
+            flex: 1;
+            background-color: #090909;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+        }
+        
+        .hero-image-wrapper img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        /* COLLECTION SECTION */
+        
+        .collection-section {
+            margin-bottom: 64px;
+            text-align: center;
+        }
+        
+        .collection-section h2 {
+            font-weight: 800;
+            font-size: 1.75rem;
+            margin-bottom: 32px;
+            letter-spacing: 0.06em;
+        }
+        
+        .collection-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .collection-item {
+            background-color: #111111;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgb(0 0 0 / 0.75);
+            overflow: hidden;
+            color: #ddd;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .collection-item:hover,
+        .collection-item:focus-within {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgb(0 102 255 / 0.5);
+        }
+        
+        .collection-image {
+            flex-shrink: 0;
+        }
+        
+        .collection-image img {
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #222;
+        }
+        
+        .collection-label {
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 12px 0;
+        }
+        
+        .btn-secondary {
+            margin-top: 28px;
+            display: inline-block;
+            background: #0066ff;
+            color: white;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.7);
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.25s ease;
+        }
+        
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: #0053cc;
+        }
+        /* TECHNOLOGY SECTION */
+        
+        .technology-section {
+            margin-bottom: 64px;
+        }
+        
+        .technology-section h2 {
+            font-weight: 800;
+            font-size: 1.75rem;
+            text-align: center;
+            margin-bottom: 24px;
+            letter-spacing: 0.06em;
+        }
+        
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .tech-icon {
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .producto:hover {
-            transform: translateY(-5px);
-        }
-        
-        .producto h3 {
-            color: #2c7a7b;
-            margin-bottom: 0.75rem;
-            text-align: center;
-        }
-        
-        .producto img {
-            max-width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            box-shadow: 0 6px 15px rgba(44, 122, 123, 0.4);
-        }
-        
-        .producto p {
-            color: #285e61;
-            font-size: 1rem;
-            margin-bottom: 0.6rem;
-            text-align: center;
-            flex-grow: 1;
-        }
-        
-        .producto p.price {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #276749;
-        }
-        
-        .producto button {
-            background-color: #38a169;
-            border: none;
-            color: white;
-            padding: 0.6rem 1.4rem;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(56, 161, 105, 0.7);
-            transition: background-color 0.3s ease;
-            width: 100%;
-        }
-        
-        .producto button:hover,
-        .producto button:focus {
-            background-color: #2f855a;
-            outline: none;
-        }
-        /* Contacto */
-        
-        #contacto p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            color: #4a5568;
-        }
-        
-        #contacto ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-            display: flex;
-            gap: 1.2rem;
-        }
-        
-        #contacto ul li a {
-            font-weight: 700;
-            padding: 0.3rem 0.6rem;
-            background-color: #38a169;
-            color: white;
-            border-radius: 5px;
-            box-shadow: 0 4px 9px rgba(56, 161, 105, 0.7);
-            transition: background-color 0.3s ease;
-            display: inline-block;
-        }
-        
-        #contacto ul li a:hover,
-        #contacto ul li a:focus {
-            background-color: #2f855a;
-            outline: none;
-        }
-        
-        form {
-            background: #e6fffa;
-            padding: 1.5rem 1rem 1.8rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(56, 161, 105, 0.3);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        form label {
-            display: block;
+            color: #3399ff;
             font-weight: 600;
-            color: #2c7a7b;
-            margin-bottom: 0.4rem;
-            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            max-width: 100px;
+            text-align: center;
         }
         
-        form input[type="text"],
-        form input[type="email"],
-        form textarea {
-            width: 100%;
-            padding: 0.6rem;
-            border: 2px solid #38a169;
-            border-radius: 6px;
-            font-family: inherit;
+        .tech-icon svg {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        /* TESTIMONIALS */
+        
+        .testimonials {
+            max-width: 850px;
+            margin: 0 auto;
+            display: grid;
+            gap: 30px;
+            user-select: none;
+        }
+        
+        .testimonial {
+            background-color: #111111;
+            padding: 24px 24px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgb(0 0 0 / 0.85);
+            position: relative;
             font-size: 1rem;
-            resize: vertical;
-            transition: border-color 0.3s ease;
-            box-sizing: border-box;
+            color: #ccc;
+            font-style: italic;
         }
         
-        form input[type="text"]:focus,
-        form input[type="email"]:focus,
-        form textarea:focus {
-            outline: none;
-            border-color: #2f855a;
-        }
-        
-        form textarea {
-            min-height: 90px;
-        }
-        
-        form button[type="submit"] {
-            margin-top: 1rem;
-            background-color: #38a169;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.6rem;
-            font-size: 1.1rem;
+        .testimonial strong {
+            display: block;
             font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 5px 12px rgba(56, 161, 105, 0.75);
-            transition: background-color 0.3s ease;
-            width: 100%;
+            font-style: normal;
+            color: white;
+            margin-top: 12px;
         }
-        
-        form button[type="submit"]:hover,
-        form button[type="submit"]:focus {
-            background-color: #2f855a;
-            outline: none;
-        }
-        /* Footer */
+        /* FOOTER */
         
         footer {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            background-color: #2d3748;
-            color: #cbd5e0;
+            background-color: #0a0a0a;
+            border-top: 1px solid #222;
+            padding: 24px 16px;
+            color: #444;
             font-size: 0.9rem;
-            margin-top: 2rem;
+            text-align: center;
+            user-select: none;
         }
-        /* Responsive */
+        /* RESPONSIVE */
         
-        @media (max-width: 700px) {
-            #inicio img {
-                max-width: 100%;
-                margin-bottom: 1rem;
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                gap: 24px;
+                font-weight: 600;
+                font-size: 1rem;
+                align-items: center;
             }
-            #tienda {
-                flex-direction: column;
-                gap: 1.2rem;
+            .menu-toggle {
+                display: none;
+            }
+            .mobile-nav,
+            .backdrop {
+                display: none !important;
+            }
+            main {
+                padding: 0 48px 80px;
+            }
+            /* Hero layout horizontally */
+            .hero {
+                flex-direction: row;
+                min-height: 420px;
+            }
+            .hero-content {
+                max-width: 50%;
+                padding: 60px 56px 60px 60px;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero-image-wrapper {
+                max-width: 50%;
+                padding: 48px;
+            }
+            /* Collection grid 3 columns */
+            .collection-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 32px;
+                max-width: 1100px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            /* Testimonials horizontal */
+            .testimonials {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1440px) {
+            main {
+                padding: 0 64px 100px;
+            }
+            .hero-content {
+                padding-left: 72px;
+                padding-right: 72px;
+            }
+            .hero h1 {
+                font-size: 3.5rem;
+                letter-spacing: 0.07em;
+            }
+            .collection-grid {
+                max-width: 1300px;
+                gap: 40px;
+            }
+            .testimonials {
+                max-width: 1200px;
             }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header>
-        <h1>Pet Paradise</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html" aria-label="Ir a Página de inicio">Página de inicio</a></li>
-                <li><a href="tienda.html" aria-label="Ir a Tienda en línea">Tienda en línea</a></li>
-                <li><a href="contacto.html" aria-label="Ir a Página de contacto">Página de contacto</a></li>
-            </ul>
+        <div class="header-container">
+            <a href="#" class="logo" aria-label="Vortex Athletics">
+                <img src="Diseño sin título.png" alt="Logo Vortex Athletics" /> VORTEX ATHLETICS
+            </a>
+            <button aria-label="Abrir menú de navegación" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav">
+      <i class="fas fa-bars"></i>
+    </button>
+            <nav id="desktop-nav" aria-label="Menú principal">
+                <a href="#home">Inicio</a>
+                <a href="tienda.html">Compra</a>
+                <a href="#contact">Contacto</a>
+            </nav>
+        </div>
+        <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil" tabindex="-1">
+            <a href="#home" tabindex="0">Inicio</a>
+            <a href="tienda.html" tabindex="0">Compra</a>
+            <a href="#contact" tabindex="0">Contacto</a>
         </nav>
+        <div class="backdrop" id="backdrop"></div>
     </header>
 
-    <section id="inicio" tabindex="-1" aria-label="Sección Página de inicio">
-        <h2>Bienvenidos a Pet Paradise</h2>
-        <p>En Pet Paradise, ofrecemos todo lo que necesitas para el cuidado y bienestar de tus mascotas. Desde alimentos de alta calidad hasta juguetes y accesorios, ¡tenemos todo lo que tu amigo peludo necesita!</p>
-        <div>
-            <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=600&q=80" alt="Perro feliz jugando en jardín" />
-            <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=600&q=80" alt="Gato descansando feliz" />
-        </div>
-        <h3>Integrantes del grupo:</h3>
-        <ul>
-            <li>Maryoris Gómez scarpaty</li>
-            
-        </ul>
-        <a href="matriz_dofa.html" class="button">Ver Matriz DOFA</a>
-    </section>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home" tabindex="-1">
+            <div class="hero-content" role="region" aria-label="Mensaje principal">
+                <h1>
+                    IMPULSA TU<br /> FUERZA,
+                    <br /> REDEFINE
+                    <br /> TU LÍMITE
+                </h1>
+                <button class="btn-primary" aria-label="Descubre nuestra tecnología">
+        Descubre nuestra tecnología
+      </button>
+            </div>
+            <div class="hero-image-wrapper" role="img" aria-label="Atleta corriendo usando camiseta deportiva con tecnología Vortex Athletics">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/931db088-d774-4542-ad3e-23772bab375d.png" alt="Hombre atlético corriendo con camiseta deportiva negra con detalles azules brillantes" />
+            </div>
+        </section>
+
+        <!-- Collection Section -->
+        <section class="collection-section" id="shop" aria-labelledby="collection-title" tabindex="-1">
+            <h2 id="collection-title">COLECCIÓN DESTACADA</h2>
+            <div class="collection-grid" role="list">
+                <article class="collection-item" role="listitem" tabindex="0" aria-label="Zapatillas Cycion Boost">
+                    <div class="collection-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/475e7ed2-8857-4c5a-ae18-65270a9736dc.png" alt="Zapatillas negras deportivas con detalles azules Cycion Boost" />
+                    </div>
+                    <div class="collection-label">Cycion Boost</div>
+                </article>
+                <article class="collection-item" role="listitem" tabindex="0" aria-label="Pantalones deportivos CoreFlex">
+                    <div class="collection-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3ece4078-c941-44ad-b275-4e6786aca7d3.png" alt="Mujer usando pantalones deportivos negros CoreFlex" />
+                    </div>
+                    <div class="collection-label">CoreFlex</div>
+                </article>
+                <article class="collection-item" role="listitem" tabindex="0" aria-label="Top deportivo V-Pulse">
+                    <div class="collection-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3b87aaa7-66fa-4c54-90c2-3cd35420168f.png" alt="Mujer usando top deportivo negro V-Pulse" />
+                    </div>
+                    <div class="collection-label">V-Pulse</div>
+                </article>
+            </div>
+            <div style="text-align:center; margin-top: 32px;">
+                <button class="btn-secondary" aria-label="Ver tienda" onclick="location.href='tienda.html'">Ver tienda</button>
+            </div>
+        </section>
+
+        <!-- Technology section -->
+        <section class="technology-section" aria-labelledby="technology-title" tabindex="-1">
+            <h2 id="technology-title">NUESTRA TECNOLOGÍA</h2>
+            <div class="tech-icons" role="list" aria-label="Características tecnológicas destacadas">
+                <div class="tech-icon" role="listitem">
+                    <i class="fas fa-microchip" aria-hidden="true"></i> Sensores
+                </div>
+                <div class="tech-icon" role="listitem">
+                    <i class="fas fa-brain" aria-hidden="true"></i> Inteligente
+                </div>
+                <div class="tech-icon" role="listitem">
+                    <i class="fas fa-mobile-alt" aria-hidden="true"></i> App de entrenamiento
+                </div>
+                <div class="tech-icon" role="listitem">
+                    <i class="fas fa-headset" aria-hidden="true"></i> Mantenimiento virtual
+                </div>
+            </div>
+
+            <div class="testimonials" aria-label="Testimonios de usuarios">
+                <blockquote class="testimonial">
+                    “Mi rendimiento mejoró un 30% gracias al conjunto CoreFlex.”
+                    <strong>Andrea, Runner</strong>
+                </blockquote>
+                <blockquote class="testimonial">
+                    “La app de entrenamiento virtual es una revolución.”
+                    <strong>Lúcas, Coach</strong>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" tabindex="-1" aria-labelledby="contact-title" style="max-width:600px; margin: 40px auto;">
+            <h2 id="contact-title" style="font-weight: 800; font-size: 1.75rem; margin-bottom: 24px; text-align:center;">Contáctanos</h2>
+            <form aria-label="Formulario de contacto Vortex Athletics" style="display:flex; flex-direction: column; gap: 16px; color:#eee;">
+                <label for="name">Nombre Completo</label>
+                <input id="name" name="name" type="text" required placeholder="Tu nombre" style="padding:12px; border-radius:8px; border:none; font-size:1rem;" />
+
+                <label for="email">Correo Electrónico</label>
+                <input id="email" name="email" type="email" required placeholder="Tu correo electrónico" style="padding:12px; border-radius:8px; border:none; font-size:1rem;" />
+
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" rows="5" required placeholder="Escribe tu mensaje" style="padding:12px; border-radius:8px; border:none; font-size:1rem; resize:vertical;"></textarea>
+
+                <button type="submit" class="btn-primary" style="align-self:center; width: 50%;">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2024 Vortex Athletics. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        // Toggle mobile navigation
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const backdrop = document.getElementById('backdrop');
+
+        function closeMenu() {
+            mobileNav.classList.remove('open');
+            backdrop.classList.remove('show');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        function openMenu() {
+            mobileNav.classList.add('open');
+            backdrop.classList.add('show');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            mobileNav.focus();
+        }
+
+        menuToggle.addEventListener('click', () => {
+            if (mobileNav.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        backdrop.addEventListener('click', () => closeMenu());
+
+        // Close menu with Escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+                closeMenu();
+                menuToggle.focus();
+            }
+        });
+
+        // Smooth scroll for internal links (optional UX)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeMenu();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
